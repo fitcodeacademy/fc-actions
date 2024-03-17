@@ -11,10 +11,10 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Install Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
       with:
         python-version: '3.x'  # Оберіть підходящу версію Python
     - name: Install or update ftputil
@@ -22,4 +22,4 @@ jobs:
     - name: Deploy to FTP
       run: |
         pip install ftputil
-        python deploy.py ${{ secrets.FTP_HOST }} ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }} fitcode.zzz.com.ua ../dist
+        python deploy.py ${{ secrets.FTP_HOST }} ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }} fitcode.zzz.com.ua ./dist
