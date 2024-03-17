@@ -1,0 +1,24 @@
+name: Deploy to FTP Hosting
+
+on:
+  push:
+    branches:
+      - main  # Змініть це на відповідну гілку
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'  # Оберіть підходящу версію Python
+
+    - name: Deploy to FTP
+      run: |
+        pip install ftputil
+        python deploy.py ${{ secrets.FTP_HOST }} ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }} fitcode.zzz.com.ua ./dist
