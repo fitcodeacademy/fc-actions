@@ -2,7 +2,7 @@ import ftputil
 
 def ftp_upload(hostname, username, password, remote_dir, local_dir):
     with ftputil.FTPHost(hostname, username, password) as host:
-        host.upload_if_newer(local_dir, remote_dir)
+        host.upload(local_dir, remote_dir)
 
 if __name__ == "__main__":
     import sys
