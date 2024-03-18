@@ -3,6 +3,14 @@ import ftputil
 
 def ftp_upload(hostname, username, password, remote_dir, local_dir):
     with ftputil.FTPHost(hostname, username, password) as host:
+        # Change directory to the remote directory
+        try:
+            host.chdir(remote_dir)
+        except ftputil.error.PermanentError:
+            # If the directory doesn't exist, create it
+            host.makedirs(remote_dir)
+
+        # Upload files
         for root, dirs, files in os.walk(local_dir):
             for filename in files:
                 local_path = os.path.join(root, filename)
