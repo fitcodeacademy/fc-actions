@@ -3,7 +3,7 @@ name: Deploy to FTP Hosting
 on:
   push:
     branches:
-      - main  # Змініть це на відповідну гілку
+      - main  
 
 jobs:
   deploy:
@@ -16,7 +16,7 @@ jobs:
     - name: Install Python
       uses: actions/setup-python@v3
       with:
-        python-version: '3.x'  # Оберіть підходящу версію Python
+        python-version: '3.x'  
     - name: Install or update ftputil
       run: pip install ftputil --upgrade
     - name: Deploy to FTP
